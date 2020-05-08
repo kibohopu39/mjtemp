@@ -43,7 +43,7 @@ public class framlayout extends Fragment{
     //Firebase
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private ArrayList<Integer> decision ;
+    private ArrayList<Integer> decision;
     private OriginMJ MJObj;
 
 
@@ -71,8 +71,12 @@ public class framlayout extends Fragment{
                             MJObj=playingActivity.getMJObj();
                             decision= MJObj.getDecision();    //0.0.0.0
                             if(Collections.max(decision)==10){
+
                                 playingActivity.gotoEatList();
+
                             }
+
+
                         }
                     },3000);
                     break;
@@ -85,6 +89,7 @@ public class framlayout extends Fragment{
                             MJObj=playingActivity.getMJObj();
                             decision= MJObj.getDecision();    //0.0.0.0
                             if(Collections.max(decision)==100){
+
                                 playingActivity.Pongwhat();
                             }
                         }
@@ -141,9 +146,10 @@ public class framlayout extends Fragment{
                                 MJObj.setIsTimeStop(true);    //TODO 避免二次進入onDataChange p2會重新跑
                                 MJObj.setIsEPGW(false);
                                 myRef.setValue(MJObj);
+
                             }
                         }
-                    },2000);
+                    },3000);
                     break;
             }
             playingActivity.closeFragment();
@@ -186,7 +192,7 @@ public class framlayout extends Fragment{
 
             //timer設定7秒關閉fragment
             timer = new Timer();
-            timer.schedule(new DoNothing(), 5000);
+            timer.schedule(new DoNothing(), 7000);
             new Thread(new CountDown()).start();
 
         return view;
@@ -217,10 +223,6 @@ public class framlayout extends Fragment{
 
         @Override
         public void run() {
-            database = FirebaseDatabase.getInstance();
-            myRef=database.getReference(MainApp.RoomId+"gaming");
-            MJObj=new OriginMJ();
-            decision = new ArrayList<>();
             playingActivity.timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -231,12 +233,14 @@ public class framlayout extends Fragment{
                         MJObj.setIsTimeStop(true);    //TODO 避免二次進入onDataChange p2會重新跑
                         MJObj.setIsEPGW(false);
                         myRef.setValue(MJObj);
+
                     }
                 }
-            },2000);
+            },3000);
 
             playingActivity.closeFragment();
-
+            //看看什麼也不幹要傳回什麼
+            //...
         }
     }
     private class CountDown implements Runnable{
@@ -266,6 +270,7 @@ public class framlayout extends Fragment{
             Bundle b = msg.getData();
             int time = b.getInt("time");
             count_text.setText("剩餘:"+time+"秒");
+            Log.v("wei","www");
         }
     }
 
