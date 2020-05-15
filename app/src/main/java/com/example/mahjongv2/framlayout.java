@@ -34,7 +34,6 @@ import java.util.zip.Inflater;
 public class framlayout extends Fragment{
     private TextView count_text;
     private Timer timer;
-    private TimerTask timerTask;
     private View view;
     private PlayingActivity playingActivity;
     private Button eat,pong,gong,cancel,whoo;
@@ -120,7 +119,9 @@ public class framlayout extends Fragment{
                             MJObj=playingActivity.getMJObj();
                             decision= MJObj.getDecision();    //0.0.0.0
                             for(int i =0;i<4;i++){
+                                //尋訪decision裡的元素,離出牌者最進者勝利
                                if(decision.get((MJObj.getWhosTurn()+3+i)%4) ==1000){
+                                   //最近的那個是不是我
                                    if(MainApp.myTurn==(MJObj.getWhosTurn()+3+i)%4){
                                        //胡牌
                                        Log.v("leo","恭喜你贏惹");

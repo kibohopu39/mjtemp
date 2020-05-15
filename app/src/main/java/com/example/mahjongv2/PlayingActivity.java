@@ -254,7 +254,7 @@ public class PlayingActivity extends AppCompatActivity {
                 return;
             }
 
-            //如果 接下來該我摸牌                   且  沒人EPGW           且  沒人EPGW   才能摸牌    //這裡基本上只跟P2(下家)有關
+            //如果 接下來該我摸牌                   且  沒人EPGW   才能摸牌    //這裡基本上只跟P2(下家)有關
             if(MJObj.getWhosTurn()==MainApp.myTurn && !MJObj.getIsEPGW()){
 
                 btn_mask.setVisibility(View.INVISIBLE);

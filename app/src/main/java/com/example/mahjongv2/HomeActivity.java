@@ -84,6 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                 //TODO
                 Intent intent = new Intent(HomeActivity.this,SmallGameActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 HomeActivity.this.finish();
             }
         });
@@ -92,6 +93,9 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void overridePendingTransition(int enterAnim, int exitAnim) {
 
-
+        super.overridePendingTransition(enterAnim, exitAnim);
+    }
 }
